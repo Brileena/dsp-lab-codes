@@ -1,0 +1,25 @@
+%with  without inbuilt function
+clc;
+close all;
+
+x=input("enter x");
+h=input("enter impulse response");
+x_ind=input("index of x");
+h_ind=input("index of h");
+y_ind=min(x_ind)+min(h_ind):max(x_ind)+max(h_ind);
+n=length(x);
+m=length(h);
+len_y=length(y);
+y=zeros(1,len_y);
+for i=1:n
+    for j=1:m
+        y(i+j-1)=y(i+j-1)+x(i)*h(i);
+      
+    end
+end
+disp("result");
+disp(y);
+stem(y_ind,y);
+xlabel("index");
+ylabel("amplitude");
+title("linear convolution without using inbuilt function");
