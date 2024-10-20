@@ -1,0 +1,22 @@
+%circular convolution using fft and ifft
+clc;
+close all;
+x=input("first sequence");
+h=input("second sequence");
+n=length(x);
+m=length(h);
+l=max(n,m);
+xn=[x zeros(1,1-n)];
+hn=[x zeros(1,1-m)];
+n=fft(xn);
+m=fft(hn);
+yi=n.*m;
+y=ifft(yl);
+disp(y);
+stem(y_index,y);
+xlabel("index");
+ylabel("amplitude");
+title("using fft and ifft");
+
+
+
