@@ -1,0 +1,44 @@
+% idft with  builtin methods and formula
+clc;
+clear all;
+close all;
+X=input("enter the dft sequence");
+N=length(X);
+x_formula=zeros(1,N);
+for n = 1:N 
+ for k = 1:N 
+ x_formula(n) = ([x_formula(n) + X(k) * exp(1i * 2 * pi * (k-1) 
+* (n-1) / N); 
+ end 
+ x_formula(n) = x_formula(n) / N; 
+end 
+disp('IDFT sequence x[n] using formula:'); 
+disp(x_formula); 
+x_builtin = ifft(X); 
+disp('IDFT sequence x[n] using built-in function:'); 
+disp(x_builtin);
+
+% DFT using twiddle factor matrix 
+x = input('Enter the input sequence: '); 
+% Length of the input sequence 
+N = length(x); 
+% Twiddle factor matrix (W) 
+W = exp(-1i*2*pi*(0:N-1)'*(0:N-1)/N); 
+% DFT calculation using the twiddle factor matrix 
+X = W * x(:); % x(:) converts the sequence into a column vector 
+% Display the DFT output 
+disp('DFT of the input sequence (using Twiddle Factor Matrix):'); 
+disp(X);
+
+
+% IDFT using twiddle factor matrix 
+x = input('Enter the input sequence: '); 
+% Length of the input sequence 
+N = length(x); 
+% Twiddle factor matrix for IDFT (W) 
+W = exp(1i*2*pi*(0:N-1)'*(0:N-1)/N); 
+% IDFT calculation using the twiddle factor matrix 
+X_idft = (1/N) * (W * x(:)); % Scaling by 1/N for IDFT 
+% Display the IDFT output 
+disp('IDFT of the input sequence (using Twiddle Factor Matrix):');
+disp(X_idft);
