@@ -1,0 +1,32 @@
+LINEARITY PROPERTY
+% MATLAB code to verify linearity property of DFT 
+clc; 
+clear all; 
+close all; 
+% Input the first sequence from the user 
+x1 = input('Enter the first sequence x1[n]: '); 
+% Input the second sequence from the user 
+x2 = input('Enter the second sequence x2[n]: '); 
+% Input the constants a and b 
+a = input('Enter the constant a: '); 
+b = input('Enter the constant b: '); 
+% Compute the linear combination of the input sequences 
+x = a * x1 + b * x2; 
+% Compute the DFT of the individual sequences 
+X1 = fft(x1); 
+X2 = fft(x2); 
+% Compute the linear combination of the DFTs 
+X_linear_comb = a * X1 + b * X2; 
+% Compute the DFT of the linear combination of the sequences 
+X = fft(x); 
+% Display results 
+disp('DFT of the linear combination of the input sequences:');
+disp(X);
+disp('Linear combination of the DFTs of the individual sequences:'); 
+disp(X_linear_comb); 
+% Verify if the results are the same 
+if isequal(round(X, 10), round(X_linear_comb, 10)) 
+ disp('The linearity property of DFT is verified.'); 
+else 
+ disp('The linearity property of DFT is not satisfied.'); 
+end
