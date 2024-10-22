@@ -1,0 +1,82 @@
+LINEARITY PROPERTY
+% MATLAB code to verify linearity property of DFT 
+clc; 
+clear all; 
+close all; 
+% Input the first sequence from the user 
+x1 = input('Enter the first sequence x1[n]: '); 
+% Input the second sequence from the user 
+x2 = input('Enter the second sequence x2[n]: '); 
+% Input the constants a and b 
+a = input('Enter the constant a: '); 
+b = input('Enter the constant b: '); 
+% Compute the linear combination of the input sequences 
+x = a * x1 + b * x2; 
+% Compute the DFT of the individual sequences 
+X1 = fft(x1); 
+X2 = fft(x2); 
+% Compute the linear combination of the DFTs 
+X_linear_comb = a * X1 + b * X2; 
+% Compute the DFT of the linear combination of the sequences 
+X = fft(x); 
+% Display results 
+disp('DFT of the linear combination of the input sequences:');
+disp(X);
+disp('Linear combination of the DFTs of the individual sequences:'); 
+disp(X_linear_comb); 
+% Verify if the results are the same 
+if isequal(round(X, 10), round(X_linear_comb, 10)) 
+ disp('The linearity property of DFT is verified.'); 
+else 
+ disp('The linearity property of DFT is not satisfied.'); 
+end
+
+PARSEVAL'S THEOREM
+%Parseval's Theorem 
+clc; 
+clear all; 
+close all; 
+x=input('enter sequence 1'); 
+h=input('enter sequence 2'); 
+N=max(length(x),length(h)); 
+X=[x zeros(1,N-length(x))]; 
+H=[h zeros(1,N-length(h))]; 
+td=sum(X.*conj(H)); 
+fd=sum(fft(X).*conj(fft(H)))./N; 
+disp(td); 
+disp(fd); 
+if is equal(td,fd); 
+ disp('Parseval theorem verified'); 
+else 
+ disp('Not verified');
+
+MULTIPLICATION PROPERTY
+
+clc; 
+clear all; 
+close all; 
+% Define user sequences 
+x = input('Enter the first sequence x: '); % User-defined sequence 
+x[n] 
+h = input('Enter the second sequence h: '); % User-defined sequence 
+h[n] 
+% Length of the sequences 
+N = max(length(x), length(h)); 
+x = [x, zeros(1, N - length(x))]; % Zero-padding if needed 
+h = [h, zeros(1, N - length(h))]; 
+LHS= fft(x.*h); 
+% DFT of both sequences 
+X = fft(x); % DFT of x 
+H = fft(h); % DFT of h 
+RHS= (cconv(X,H,N))./N 
+% Displaying results 
+disp('Time Domain: '); 
+disp(LHS); 
+disp('Frequency domain'); 
+disp(RHS); 
+% Comparing the results 
+if isequal(LHS,RHS) 
+ disp('Multiplication property of DFT is verified!'); 
+else 
+ disp('There is a discrepancy!'); 
+end
